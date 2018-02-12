@@ -34,6 +34,6 @@ extern const char *hash_lockedby;
 extern const char *meta_lockedby;
 extern const char *offset_lockedby;
 extern const char *cachep2i_lockedby;
-#ifdef HAMSTERDB
+#ifdef UPSCALEDB
 extern const char *ham_lockedby;
 #endif

@@ -66,7 +66,7 @@
 #include "lib_repl.h"
 
 #ifndef BERKELEYDB
-#ifndef HAMSTERDB
+#ifndef UPSCALEDB
 extern char *logname;
 extern char *function;
 extern int debug;

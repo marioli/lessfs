@@ -4,7 +4,7 @@ libdir=@libdir@
 includedir=@includedir@
 
 ARCH := $(shell uname -m)
-LIBS=$(CRYPTO_LIBS) $(DEPS_LIBS) $(LZO_LIBS) $(HAMSTERDB_LIBS) $(BERKELEYDB_LIBS) $(SNAPPY_LIBS)
+LIBS=$(CRYPTO_LIBS) $(DEPS_LIBS) $(LZO_LIBS) $(UPSCALEDB_LIBS) $(BERKELEYDB_LIBS) $(SNAPPY_LIBS)
 bin_PROGRAMS=lessfs
 sbin_PROGRAMS=mklessfs listdb lessfsck replogtool
 man1_MANS=lessfs.1 replogtool.1

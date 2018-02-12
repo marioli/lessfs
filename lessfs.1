@@ -227,7 +227,7 @@ Valid options are 0..5.
 Valid options are : off (default) or on. This option is only valid when lessfs is compiled with BerkeleyDB support. Enabling DB_PRIVATE can improve performance at the cost of making it impossible to use third party tools like db_stat. 
 .IP TUNEFORSIZE=medium
 Valid options are : small (default), medium or huge. This option is only valid when lessfs is compiled with BerkeleyDB support. It enables BerkeleyDB database partitioning. Use small when lessfs will store less then 1TB of data. Medium will tune lessfs to store up to 10TB. Huge will indicate more then 10TB. Tuning DB_CONFIG for cache size and locks is still needed and not effected by these settings!
-.SS HAMSTERDB SPECIFIC OPTIONS
+.SS UPSCALEDB SPECIFIC OPTIONS
 .IP HAMSTERDB_CACHESIZE=size
 Specify the size of the cache in bytes that hamsterdb uses internally. 
 .SH SEE ALSO

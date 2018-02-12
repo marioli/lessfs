@@ -22,7 +22,7 @@
 #include <config.h>
 #endif
 
-#ifdef HAMSTERDB
+#ifdef UPSCALEDB
 #ifndef LFATAL
 #include "lib_log.h"
 #endif

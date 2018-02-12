@@ -72,7 +72,7 @@
 #include <db.h>
 #include "lib_bdb.h"
 #else
-#ifndef HAMSTERDB
+#ifndef UPSCALEDB
 #include "lib_tc.h"
 #else
 #include "lib_hamster.h"
@@ -157,7 +157,7 @@ int check_path_sanity(const char *path)
 void dbsync()
 {
 #ifndef BERKELEYDB
-#ifndef HAMSTERDB
+#ifndef UPSCALEDB
     tcbdbsync(dbdirent);
     tchdbsync(dbu);
     tchdbsync(dbb);
@@ -1314,7 +1314,7 @@ void *housekeeping_worker(void *arg)
                 count = 7;
                 break;
 #else
-#ifdef HAMSTERDB
+#ifdef UPSCALEDB
             case 0:
                 dbpath =
                     as_sprintf(__FILE__, __LINE__, "%s/lessfs.db",
@@ -1491,7 +1491,7 @@ void show_lock_status(int csocket)
                      "cachep2i_lock : 0 (not set)\n",
                      strlen("cachep2i_lock : 0 (not set)\n"));
     }
-#ifdef HAMSTERDB
+#ifdef UPSCALEDB
     if (0 != try_ham_lock()) {
         msg =
             as_sprintf(__FILE__, __LINE__, "ham_lock : 1 (set) by %s\n",
@@ -1597,7 +1597,7 @@ void *ioctl_worker(void *arg)
                 }
             }
 #ifndef BERKELEYDB
-#ifndef HAMSTERDB
+#ifndef UPSCALEDB
             if (0 == strncmp(buf, "defrag\r", strlen("defrag\r"))) {
                 result = "Resuming i/o after defragmentation.";
                 err = 1;
@@ -1762,7 +1762,7 @@ void mark_dirty()
     s_free(brand);
     free(stiger);
 #ifndef BERKELEYDB
-#ifndef HAMSTERDB
+#ifndef UPSCALEDB
     tchdbsync(dbu);
 #endif
 #endif
@@ -1979,7 +1979,7 @@ static void *lessfs_init()
 #ifdef BERKELEYDB
        bdb_restart_truncation();
 #else
-#ifdef HAMSTERDB
+#ifdef UPSCALEDB
        hm_restart_truncation();
 #else
        tc_restart_truncation();

@@ -72,7 +72,7 @@
 #include <db.h>
 #include "lib_bdb.h"
 #else
-#ifndef HAMSTERDB
+#ifndef UPSCALEDB
 #include "lib_tc.h"
 #else
 #include "lib_hamster.h"
@@ -94,7 +94,7 @@ extern int freplbl;             /* Backlog processing */
 extern int BLKSIZE;
 extern long working;
 
-#ifndef HAMSTERDB
+#ifndef UPSCALEDB
 TCHDB *dbb = NULL;
 TCHDB *dbu = NULL;
 TCHDB *dbp = NULL;
@@ -2553,7 +2553,7 @@ void db_close(bool defrag)
 #ifdef BERKELEYDB
     bdb_close();
 #else
-#ifndef HAMSTERDB
+#ifndef UPSCALEDB
     tc_close(defrag);
 #else
     hm_close(defrag);
@@ -3432,7 +3432,7 @@ void parseconfig(int mklessfs, bool force_optimize)
         }
     }
 #ifndef BERKELEYDB
-#ifndef HAMSTERDB
+#ifndef UPSCALEDB
     if ( 0 != mklessfs ) { 
        fprintf(stderr,"Using tokyocabinet is DEPRECATED and no longer recommended. Please consider using (1) Berkeley DB or (2) Hamsterdb.\n");
     }
@@ -3445,7 +3445,7 @@ void parseconfig(int mklessfs, bool force_optimize)
             ("Configuration error : berkeleydb only supports file_io or chunk_io");
     }
 #endif
-#ifdef HAMSTERDB
+#ifdef UPSCALEDB
     if (config->blockdata_io_type == TOKYOCABINET) {
         if ( 0 != mklessfs ) fprintf(stderr,"Configuration error : hamsterdb only supports file_io or chunk_io\n");
         die_dataerr
@@ -3474,7 +3474,7 @@ void parseconfig(int mklessfs, bool force_optimize)
 #ifdef BERKELEYDB
     config->meta = read_val("META_PATH");
 #else
-#ifdef HAMSTERDB
+#ifdef UPSCALEDB
     config->meta = read_val("META_PATH");
 #else
     config->freelist = read_val("FREELIST_PATH");
@@ -3684,7 +3684,7 @@ void parseconfig(int mklessfs, bool force_optimize)
         cs = 30;
     config->flushtime = cs;
     LINFO("cache %llu data blocks", config->cachesize);
-#ifdef HAMSTERDB
+#ifdef UPSCALEDB
     iv = getenv("HAMSTERDB_CACHESIZE");
     if (iv) {
         sscanf(iv, "%lu", &config->hamsterdb_cachesize);
@@ -3703,7 +3703,7 @@ void parseconfig(int mklessfs, bool force_optimize)
             exit(EXIT_DATAERR);
         }
         if (config->blockdata_io_type == CHUNK_IO) init_chunk_io();
-#ifdef HAMSTERDB
+#ifdef UPSCALEDB
         hm_create(0);
 #endif
     }
@@ -3716,7 +3716,7 @@ void parseconfig(int mklessfs, bool force_optimize)
 #ifdef BERKELEYDB
         bdb_open();
 #else
-#ifdef HAMSTERDB
+#ifdef UPSCALEDB
         hm_create(1);
 #else
         if (NULL == dbp)
@@ -3727,7 +3727,7 @@ void parseconfig(int mklessfs, bool force_optimize)
 #ifdef BERKELEYDB
         bdb_open();
 #else
-#ifdef HAMSTERDB
+#ifdef UPSCALEDB
         if (mklessfs == 0 || mklessfs == 3)
             hm_open();
 #else

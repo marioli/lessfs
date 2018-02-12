@@ -49,7 +49,7 @@
 #endif
 #include "lib_qlz.h"
 #include "lib_common.h"
-#ifndef HAMSTERDB
+#ifndef UPSCALEDB
 #ifndef BERKELEYDB
 #include "lib_tc.h"
 #endif
@@ -676,7 +676,7 @@ int common_check()
     if (chkoptions.optimizetc == 1) {
         printf("Phase %i : Running optimize on the databases. ", pcount);
 #ifndef BERKELEYDB
-#ifndef HAMSTERDB
+#ifndef UPSCALEDB
         tc_defrag();
 #endif
 #endif
@@ -800,7 +800,7 @@ int main(int argc, char *argv[])
     fprintf(stderr, "fscsk is only supported with tokyocabinet\n");
     exit(EXIT_USAGE);
 #endif
-#ifdef HAMSTERDB
+#ifdef UPSCALEDB
     fprintf(stderr, "fscsk is only supported with tokyocabinet\n");
     exit(EXIT_USAGE);
 #endif
